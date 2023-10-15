@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html>
+    <head>
+        <!-- se carga bootstrap junto a datatables y jquery -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+        <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+        <!-- ajuste de vista -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <!--se importa navbar-->
+        {% include "navbar.html" %}
+        <h1 class="text-center">historial de boletas</h1>
+        <!-- se crea la tabla de boletas de los usuarios-->
+        <div style="padding: 2%;">
+        <table id="tabla-listado-boletas" class="display nowrap" style="width: 100%;">
+            <thead>
+                
+                <tr>
+                    <th>N °Pedido</th>
+                    <th>nombre</th>
+                    <th>nombre proveedor</th>
+                    <th>Total Pedido</th>
+                    <th>Total Compra (CLP)</th>
+                    <th>Total Compra (USD)</th>
+                    <th>ver detalle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- se ingresan todas las boletas con un comando for,rellenando el contenido para cada boleta-->
+            {% for boleta in boletas %}
+            <tr>
+                <td>{{boleta.id_pedido.id}}</td>
+                <td>{{boleta.id_pedido.nombre_articulo}}</td>
+                <td>{{boleta.id_pedido.nombre_proveedor}}</td>
+                <td>{{boleta.total_pedido |intcomma }}</td>
+                <td>{{boleta.total_compra_clp |intcomma }}</td>
+                <td>{{boleta.total_compra_usd |intcomma }}</td>
+                <td><a href="/boleta/mostrarBoleta?id={{boleta.id}}"><img src="{% static 'file.png' %}" height="20px" width="20px"></a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </body>
+    <!-- se crea la tabla de datatables -->
+    <script>new DataTable('#tabla-listado-boletas',{scrollX: true})</script>
+</html>

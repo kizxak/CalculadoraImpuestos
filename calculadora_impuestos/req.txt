@@ -1,0 +1,42 @@
+Elabore una aplicación web con Django que permita conocer el costo de una importación desde China. Esta simulación debe quedar registrada en una tabla de base de datos mariadb o mysql.
+
+Para llevar a cabo la simulación  solicite al usuario la cantidad de unidades, costo unitario en dòlares, nombre del artículo, código de artículo y nombre del proveedor.
+Sólo se acepta una cantidad de unidades mayores a 0 y ningún valor puede ser vacìo.
+De esta manera determinará el total del pedido.
+
+Adicionalmente  solicite al usuario el costo de  envío a Chile en dólares . 
+
+Al momento de enviar el formulario debe llevar a cabo los siguientes procedimientos.
+
+Determine los impuestos de internacion en base a lo siguiente:
+ 6% del valor CIF en pesos chilenos correspondiente a tasa de importación de aduana 
+19% del valor CIF en pesos chilenos correspondiente a IVA.
+
+Antes de finalizar muestre:
+Total del pedido en CLP
+Costo de envío en CLP
+6% tasa de aduana CLP
+19% IVA CLP
+Total, de impuesto y aduana CLP
+Costo total de la compra (Pedido + Envío + Impuestos) en CLP y USD
+
+Importante : Considere $890 como valor del dólar. 
+Valor CIF = Total del pedido + costo de envío
+
+Debe considerar la utilización de los siguientes elementos:
+Vistas
+Plantillas
+Funciones
+Rutinas de validaciòn ya sea front end o backend. (Javascript o python)
+Bootstrap para la interfaz.
+Imágenes
+Comentarios a nivel de còdigo
+Nombres representativos para variables, funciones y archivos.
+Datatables para lista de simulaciones efectuadas.
+
+Es necesario viualizar todos las simulaciones efectuadas en una tabla utilizando datatables.
+
+Mètodo de revisión:
+Enviar enlace con video donde demuestre la ejecución de lo solicitado (50%)
+Subir código a repositorio Github y responder preguntas respecto al código  en el horario de clase el dia 16 de octubre (50%)
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html>
+    <head>
+        <!-- se carga bootstrap junto a datatables y jquery -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <!-- ajuste de vista -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{% static 'boleta.css' %}">
+
+    </head>
+    <body>
+        <!--se importa navbar-->
+        {% include "navbar.html" %}
+        <h1 class="text-center">Detalle de  boleta</h1>
+        <div class="container text-center p-3" id="lista">
+                <ul class="list-group list-group-horizontal  ">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">Nombre articulo</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black ">{{boleta.id_pedido.nombre_articulo}}</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">Codigo del articulo</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">{{boleta.id_pedido.codigo_articulo}}</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">Nombre del proveedor</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">{{boleta.id_pedido.nombre_proveedor}}</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">Cantidad de unidades</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">{{boleta.id_pedido.cantidad_unidades |intcomma }}</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">Costo de unidad en dolares</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">${{boleta.id_pedido.costo_unidad_dolar |intcomma }} USD</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">Costo del envio</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">${{boleta.id_pedido.costo_envio |intcomma }} USD</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">Tasa de aduana</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">${{boleta.tasa_aduana |intcomma }} CLP</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">Impuesto al valor agregado (iva)</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">${{boleta.impuesto_iva |intcomma }} CLP</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">Total agregado (aduana+iva)</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">${{boleta.total_agregado|intcomma }} CLP</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">total compra en dolares (agregado + envio + total de productos)</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">${{boleta.total_compra_usd |intcomma }} USD</li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">total compra en Pesos chilenos (agregado + envio + total de productos)</li>
+                    <li class="list-group-item w-50 bg-body-secondary border border-black">${{boleta.total_compra_clp |intcomma }} CLP</li>
+                </ul>
+            </div>
+    </body>
+</html>

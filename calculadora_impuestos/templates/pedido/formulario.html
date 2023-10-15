@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+    <head>
+        <!-- se exporta bootstrap y un archivo css-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{% static 'formulario.css' %}">
+        <script src="{% static 'validaciones.js' %}"></script>
+    </head>
+    <body>
+        <!--se importa navbar-->
+        {% include "navbar.html" %}
+        <div class="container-fluid mx-auto" style="padding-top: 2%;">
+            <div class="row g-3 align-items-center " style="padding-left: 5rem;padding-right: 5rem;">
+                <!-- se crean el formulario -->
+                <!-- se guarda el formulario en /pedido/guardarPedido-->
+                <form action="/pedido/guardarPedido" method="POST">{% csrf_token %}
+                    <div class="mb-3">
+                        <label for="cantidadUnidades" class="form-label">Cantidad de unidades</label>
+                        <input name="cantidadUnidades" type="number"  min=1 class="form-control" id="cantidadUnidades" placeholder="ingrese cantidad de unidades" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="costoDolar" class="form-label">Costo por unidad en dolar</label>
+                        <input name='costoDolar' type="number" min=1 class="form-control" id="costoDolar" placeholder="ingrese costo en dolares" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombreArticulo" class="form-label">Nombre articulo</label>
+                        <input name="nombreArticulo" type="text" pattern=".{1,}"  title="1 characters minimum" class="form-control" id="nombreArticulo" placeholder="ingrese nombre del articulo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="codigoArticulo" class="form-label">Codigo del articulo(numerico)</label>
+                        <input name="codigoArticulo" type="number" min=1 class="form-control" id="codigoArticulo" placeholder="Ingrese codigo del articulo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombreProveedor" class="form-label">Nombre proveedor</label>
+                        <input name="nombreProveedor" type="text" pattern=".{1,}"   required title="1 characters minimum" class="form-control" id="nombreProveedor" placeholder="ingrese nombre del Proveedor" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="costoEnvio" class="form-label">Costo de Envio en dolares</label>
+                        <input name="costoEnvio" type="number" min=1 class="form-control id="costoEnvio" placeholder="Ingrese el costo de envio" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" value="Enviar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
